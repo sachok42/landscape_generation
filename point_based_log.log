@@ -1,0 +1,9 @@
+2025-08-11 16:58:01,274 - point_based_logger - INFO - generated landscape 100x100 in 0.0003018379211425781 seconds
+2025-08-11 16:58:10,822 - point_based_logger - INFO - generated landscape 100x100 in 0.00021147727966308594 seconds
+2025-08-11 16:58:25,295 - point_based_logger - INFO - generated landscape 100x100 in 0.00016808509826660156 seconds
+2025-08-11 17:01:56,835 - point_based_logger - INFO - generated landscape 1000x1000 in 16.00745439529419 seconds
+2025-08-11 17:02:38,106 - point_based_logger - INFO - generated landscape 1000x1000 in 17.751311540603638 seconds
+2025-08-11 17:03:15,517 - point_based_logger - INFO - generated landscape 1000x1000 in 16.185069799423218 seconds
+2025-08-11 17:14:58,073 - point_based_logger - INFO - generated landscape 200x200 in 0.33502197265625 seconds
+2025-08-11 17:16:16,238 - point_based_logger - INFO - generated landscape 1080x1920 in 43.74781060218811 seconds
+2025-08-11 17:39:54,112 - point_based_logger - INFO - generated landscape 1080x1920 in 1155.5130877494812 seconds

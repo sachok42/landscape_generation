@@ -1,19 +1,14 @@
 from MapPixel import MapPixel
+from utilities import *
 import png
 import random
 import numpy as np
 random.seed(int(input()))
 
-def flatten(array: list):
-	return np.array(array).flatten().tolist()
 
 def generation_from_three(pixel1, pixel2, pixel3):
 	height = (pixel1.height + pixel2.height + pixel3.height) / 3 + random.randint(-5, 5)
 	return MapPixel(height)
-
-def image_from_map(worldmap, filename="output.png"):
-	picture_array = [flatten([pixel.color() for pixel in line]) for line in worldmap]
-	png.from_array(picture_array, 'RGB').save(filename)
 
 
 def main():

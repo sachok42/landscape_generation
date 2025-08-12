@@ -2,9 +2,10 @@ import math
 
 class MapPixel:
 	def __init__(self, height):
-		self.height = height % 256
+		self.height = min(math.floor(abs(height)), 255)
 		self.humidity = 0
 
 	def color(self):
-		height = min(math.floor(abs(self.height)), 255)
-		return [height, height, height]
+		if self.height > 127:
+			return (0, 255, 0)
+		return [0, 0, 255]
