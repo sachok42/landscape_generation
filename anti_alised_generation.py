@@ -7,7 +7,8 @@ import time
 def anti_alised_generation(height, width, radius=area_radius):
 	worldmap = point_based_generation(height, width, radius)
 	worldmap.anti_alising()
-	worldmap.render(f"anti_alised_generation_{height}x{width}_radius{radius}_time{time.time()}.png")
+	worldmap.render()
+	return worldmap
 
 def main():
 	anti_alised_generation(1080, 1920)

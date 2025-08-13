@@ -5,14 +5,18 @@ import png
 import random
 import time
 from log_config import create_logger
-import sqlite3
+import pandas
+import json
 
 
 class WorldMap:
-	def __init__(self, height, width):
-		self.height = height
-		self.width = width
-		self.map = [[None for _ in range(width)] for __ in range(height)]
+	def __init__(self, arg1, width=None): # arg1 is either height or filename
+		if type(arg1) == int and type(width) == int:
+			self.height = arg1
+			self.width = width
+			self.map = [[None for _ in range(width)] for __ in range(self.height)]
+		elif type(arg1) == str and width is None:
+			self.read_file(arg1)
 
 	def mean_height(self, x, y, radius=area_radius):
 		sum_height = 0
@@ -46,13 +50,26 @@ class WorldMap:
 		# 	return
 		self.map[y][x] = MapPixel(self.mean_height(x, y, area_radius) + random.randint(-delta, delta))
 
-	def render(self, filename="map.png"):
+	def render(self, filename=None):
+		if filename is None:
+			filename = f"anti_alised_generation_{self.height}x{self.width}_radius{area_radius}_time{time.time()}.png"
 		picture_array = [flatten([pixel.color() for pixel in line]) for line in self.map]
 		png.from_array(picture_array, 'RGB').save(filename)
 
-	def db_export(self, db_name, table_name):
-		conn = sqlite3.connect(db_name)
-		cursor = conn.cursor()
+	def export_file(self, filename):
+		export_map = [[pixel.to_dict() for pixel in line] for line in self.map]
+		dump = json.dumps(export_map)
+		with open(filename, 'w') as file:
+			file.write(dump)
+
+	def read_file(self, filename):
+		dump = None
+		with open(filename, 'r') as file:
+			dump = file.read()
+		import_map = json.loads(dump)
+		self.map = [[MapPixel(pixel) for pixel in line] for line in import_map]
+		self.height = len(self.map)
+		self.width = len(self.map[0])
 
 	def __len__(self):
 		return self.height
