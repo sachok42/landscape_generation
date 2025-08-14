@@ -5,9 +5,12 @@ import time
 
 
 def anti_alised_generation(height, width, radius=area_radius):
+	print("starting generation")
 	worldmap = point_based_generation(height, width, radius)
-	worldmap.anti_alising()
-	worldmap.render()
+	print("first stage ready")
+	# worldmap.render()
+	worldmap.anti_alising(radius)
+	# worldmap.render()
 	return worldmap
 
 def main():

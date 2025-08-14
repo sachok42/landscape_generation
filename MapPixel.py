@@ -14,13 +14,33 @@ class MapPixel:
 			print(arg1)
 			raise Exception
 
+		self.continent = 0
+
 	def color(self):
-		if self.height > 127:
-			return (0, 255, 0)
+		if self.height > 230:
+			return [96, 96, 96]
+		elif self.height > 220:
+			return [192, 192, 192]
+		elif self.height > 200:
+			return [0, 102, 0]
+		elif self.height > 150:
+			return [51, 251, 51]
+		elif self.height > 140:
+			return [255, 255, 0]
 		return [0, 0, 255]
+
+	def set_continent(self, continent):
+		self.continent = continent
+
+	def is_land(self):
+		return self.height > 140
 
 	def to_dict(self):
 		return self.__dict__
 
 	def _default(self, obj):
 		return getattr(obj.__class__, "to_json", _default.default)(obj)
+
+	def sinking(self):
+		if self.is_land():
+			self.height -= 140

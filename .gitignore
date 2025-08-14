@@ -1,3 +1,8 @@
 *.png
 *.pyc
 *.txt
+*.log
+map1080x1920radius20
+map300x300radius21
+render_archive/map1
+render_archive/map2

@@ -25,12 +25,12 @@ def point_based_generation(height, width, radius=area_radius, iterations=1):
 			# x, y = map(int, cords.split('_'))
 			# print(x, y)
 			world.predict_pixel(x, y, radius)
-	point_based_logger.info(f"generated landscape {height}x{width} in {time.time() - now} seconds")
+	point_based_logger.info(f"generated landscape {height}x{width} in {time.time() - now} seconds, radius is {radius}")
 	return world
 
 
 if __name__ == '__main__':
-	for iterations_num in range(1, 1):
+	for iterations_num in range(1, 2):
 		for height, width in [(100, 100), (200, 200), (500, 500), (1000, 1000), (1080, 1920)]:
 			now = time.time()
 			world = point_based_generation(height, width, area_radius, iterations_num)

@@ -1,23 +1,5 @@
-2025-08-11 16:58:01,274 - point_based_logger - INFO - generated landscape 100x100 in 0.0003018379211425781 seconds
-2025-08-11 16:58:10,822 - point_based_logger - INFO - generated landscape 100x100 in 0.00021147727966308594 seconds
-2025-08-11 16:58:25,295 - point_based_logger - INFO - generated landscape 100x100 in 0.00016808509826660156 seconds
-2025-08-11 17:01:56,835 - point_based_logger - INFO - generated landscape 1000x1000 in 16.00745439529419 seconds
-2025-08-11 17:02:38,106 - point_based_logger - INFO - generated landscape 1000x1000 in 17.751311540603638 seconds
-2025-08-11 17:03:15,517 - point_based_logger - INFO - generated landscape 1000x1000 in 16.185069799423218 seconds
-2025-08-11 17:14:58,073 - point_based_logger - INFO - generated landscape 200x200 in 0.33502197265625 seconds
-2025-08-11 17:16:16,238 - point_based_logger - INFO - generated landscape 1080x1920 in 43.74781060218811 seconds
-2025-08-11 17:39:54,112 - point_based_logger - INFO - generated landscape 1080x1920 in 1155.5130877494812 seconds
-2025-08-13 13:37:51,556 - point_based_logger - INFO - generated landscape 200x200 in 9.40553617477417 seconds
-2025-08-13 13:41:29,320 - point_based_logger - INFO - generated landscape 200x200 in 9.489664554595947 seconds
-2025-08-13 13:44:55,231 - point_based_logger - INFO - generated landscape 100x100 in 1.7477660179138184 seconds
-2025-08-13 13:45:22,668 - point_based_logger - INFO - generated landscape 100x100 in 1.7968907356262207 seconds
-2025-08-13 13:45:51,529 - point_based_logger - INFO - generated landscape 100x100 in 1.702733039855957 seconds
-2025-08-13 13:46:48,344 - point_based_logger - INFO - generated landscape 100x100 in 1.8024935722351074 seconds
-2025-08-13 13:47:39,901 - point_based_logger - INFO - generated landscape 100x100 in 0.06981587409973145 seconds
-2025-08-13 13:49:18,820 - point_based_logger - INFO - generated landscape 100x100 in 0.07693886756896973 seconds
-2025-08-13 14:23:31,905 - point_based_logger - INFO - generated landscape 100x100 in 0.07390213012695312 seconds
-2025-08-13 14:23:54,638 - point_based_logger - INFO - generated landscape 100x100 in 0.06379008293151855 seconds
-2025-08-13 14:24:13,114 - point_based_logger - INFO - generated landscape 100x100 in 0.06802845001220703 seconds
-2025-08-13 14:28:01,466 - point_based_logger - INFO - generated landscape 100x100 in 0.07287168502807617 seconds
-2025-08-13 14:28:44,052 - point_based_logger - INFO - generated landscape 100x100 in 0.07251882553100586 seconds
-2025-08-13 14:28:53,303 - point_based_logger - INFO - generated landscape 100x100 in 0.0871729850769043 seconds
+2025-08-13 15:49:39,930 - point_based_logger - INFO - generated landscape 1080x1920 in 15.68661093711853 seconds, radius is 1
+2025-08-13 16:16:36,301 - point_based_logger - INFO - generated landscape 1080x1920 in 1278.2309937477112 seconds, radius is 20
+2025-08-14 20:34:38,446 - point_based_logger - INFO - generated landscape 1000x1000 in 643.4626026153564 seconds, radius is 20
+2025-08-14 21:09:02,477 - point_based_logger - INFO - generated landscape 1000x1000 in 591.5881252288818 seconds, radius is 20
+2025-08-14 21:40:48,466 - point_based_logger - INFO - generated landscape 1000x1000 in 404.41781210899353 seconds, radius is 20
