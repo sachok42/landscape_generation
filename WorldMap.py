@@ -1,4 +1,4 @@
-from config import delta, area_radius, difference_limit, min_island, mountain_delta, mountain_radius
+from config import delta, area_radius, difference_limit, min_island, mountain_delta, mountain_radius, drawing_borders
 from MapPixel import MapPixel
 from utilities import *
 import png
@@ -115,11 +115,13 @@ class WorldMap:
 		if filename is None:
 			filename = f"anti_alised_generation_{self.height}x{self.width}_radius{radius}_time{time.time()}.png"
 		picture_array = [flatten([pixel.color() for pixel in line]) for line in self.map]
-		for y, line in enumerate(picture_array):
-			for x in range(len(line) // 3):
-				if self.is_plate_border(x, y):
-					for i in range(3):
-						picture_array[y][x * 3 + i] = 0
+		if drawing_borders:
+			for y, line in enumerate(picture_array):
+				for x in range(len(line) // 3):
+					if self.is_plate_border(x, y):
+						for i in range(3):
+							picture_array[y][x * 3 + i] = 0
+
 		png.from_array(picture_array, 'RGB').save(f"render_archive/{filename}")
 
 	def export_file(self, filename):
@@ -206,4 +208,4 @@ class WorldMap:
 						for dx in range(-mountain_radius, mountain_radius + 1):
 							if x + dx < 0 or x + dx >= self.height:
 								continue
-							self.map[y + dy][x + dx].mountainification(mountain_delta / mountain_radius * (mountain_radius - max(dx, dy)))
+							self.map[y + dy][x + dx].mountainification(mountain_delta / mountain_radius * (mountain_radius - max(abs(dx), abs(dy))))

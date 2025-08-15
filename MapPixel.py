@@ -8,7 +8,7 @@ class MapPixel:
 		self.continent = 0
 		self.humidity = 0
 		self.plate = 0
-		self.mountain = False
+		self.mountain_mod = 0
 		if type(arg1) is dict:
 			# print(f"dict_initializing dict is {arg1}")
 			for key, value in arg1.items():
@@ -25,9 +25,10 @@ class MapPixel:
 		self.height = min(math.floor(abs(self.height)), 255)
 
 	def color(self):
+		height = min(self.height + self.mountain_mod, 255)
 		color = [0, 0, 255]
 		for level, new_color in earth_levels:
-			if self.height >= level:
+			if height >= level:
 				color = new_color
 				break
 
@@ -53,8 +54,7 @@ class MapPixel:
 			self.height -= 140
 
 	def mountainification(self, value):
-		if not self.mountain:
-			self.change_height(value)
-			self.mountain = True
-			return True
-		return False
+		if self.mountain_mod > value:
+			return False
+		self.mountain_mod = value
+		return True

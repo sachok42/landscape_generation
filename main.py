@@ -16,9 +16,10 @@ def main():
 	# worldmap.render("map2")
 	# worldmap.export_file("map_continental.txt")
 	worldmap = WorldMap("map_continental.txt")
-	worldmap.tectonic_plates_generation(100)
+	worldmap.tectonic_plates_generation(60)
 	worldmap.mountains_generation()
-	worldmap.render("map3.png")
+	worldmap.operation_continental_noise()
+	worldmap.render("map6.png")
 
 if __name__ == '__main__':
 	main()
