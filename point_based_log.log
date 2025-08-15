@@ -5,3 +5,9 @@
 2025-08-14 21:40:48,466 - point_based_logger - INFO - generated landscape 1000x1000 in 404.41781210899353 seconds, radius is 20
 2025-08-15 08:43:09,571 - point_based_logger - INFO - generated landscape 1000x1000 in 433.4406268596649 seconds, radius is 20
 2025-08-15 10:02:00,212 - point_based_logger - INFO - generated landscape 1000x1000 in 488.30252051353455 seconds, radius is 20
+2025-08-15 15:56:32,022 - point_based_logger - INFO - generated landscape 100x100 in 2.0544240474700928 seconds, radius is 20
+2025-08-15 15:56:54,887 - point_based_logger - INFO - generated landscape 100x100 in 1.9808881282806396 seconds, radius is 20
+2025-08-15 15:57:07,041 - point_based_logger - INFO - generated landscape 100x100 in 2.0878546237945557 seconds, radius is 20
+2025-08-15 15:57:49,567 - point_based_logger - INFO - generated landscape 100x100 in 1.854480504989624 seconds, radius is 20
+2025-08-15 16:08:33,370 - point_based_logger - INFO - generated landscape 1000x1000 in 539.3999161720276 seconds, radius is 20
+2025-08-15 16:28:49,931 - point_based_logger - INFO - generated landscape 1000x1000 in 523.6727030277252 seconds, radius is 20

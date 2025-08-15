@@ -1,4 +1,4 @@
-from config import delta, area_radius, difference_limit, min_island
+from config import delta, area_radius, difference_limit, min_island, mountain_delta, mountain_radius
 from MapPixel import MapPixel
 from utilities import *
 import png
@@ -7,7 +7,8 @@ import time
 from log_config import create_logger
 import pandas
 import json
-
+from math import sqrt
+from Continent import Continent
 
 class WorldMap:
 	def __init__(self, arg1, width=None): # arg1 is either height or filename
@@ -53,6 +54,34 @@ class WorldMap:
 				if abs(self.mean_height_geo(x, y) - self.map[y][x].height) > difference_limit:
 					self.predict_pixel_geo(x, y)
 
+	def tectonic_plates_generation(self, plates_number):
+		self.plate_centers = [(random.randint(0, 1919), random.randint(0, 1079)) for _ in range(plates_number)]
+		for y in range(len(self)):
+			for x in range(self.width):
+				min_distance = 1e6
+				plate_number = None
+
+				for number, cords in enumerate(self.plate_centers):
+					c_x, c_y = cords
+					distance = sqrt((c_x - x) ** 2 + (c_y - y) ** 2)
+					if distance < min_distance:
+						min_distance = distance
+						plate_number = number
+
+				self.map[y][x].plate = plate_number
+
+	def is_plate_border(self, x, y):
+		plate_number = self.map[y][x].plate
+		for y in range(y - 1, y + 2):
+			if y < 0 or y >= self.height:
+				continue
+			for x in range(x - 1, x + 2):
+				if x < 0 or x >= self.width:
+					continue
+				if self.map[y][x].plate != plate_number:
+					return True
+		return False
+
 	def product_height(self, x, y, radius=area_radius):
 		existing_pixels = 0
 		product_height = 1
@@ -86,6 +115,11 @@ class WorldMap:
 		if filename is None:
 			filename = f"anti_alised_generation_{self.height}x{self.width}_radius{radius}_time{time.time()}.png"
 		picture_array = [flatten([pixel.color() for pixel in line]) for line in self.map]
+		for y, line in enumerate(picture_array):
+			for x in range(len(line) // 3):
+				if self.is_plate_border(x, y):
+					for i in range(3):
+						picture_array[y][x * 3 + i] = 0
 		png.from_array(picture_array, 'RGB').save(f"render_archive/{filename}")
 
 	def export_file(self, filename):
@@ -126,7 +160,7 @@ class WorldMap:
 
 		self.continents = []
 		for tiles in self.continents_list:
-			self.continents.append(continent(self.map, tiles))
+			self.continents.append(Continent(self.map, tiles))
 
 	# def find_seas
 
@@ -160,3 +194,16 @@ class WorldMap:
 				if len(continent) <= min_island:
 					for x, y in continent:
 						self.map[y][x].sinking()
+
+	def mountains_generation(self):
+		for y, line in enumerate(self.map):
+			print(f"Line {y} started, mountainification")
+			for x, pixel in enumerate(line):
+				if self.is_plate_border(x, y):
+					for dy in range(-mountain_radius, mountain_radius + 1):
+						if y + dy < 0 or y + dy >= self.height:
+							continue
+						for dx in range(-mountain_radius, mountain_radius + 1):
+							if x + dx < 0 or x + dx >= self.height:
+								continue
+							self.map[y + dy][x + dx].mountainification(mountain_delta / mountain_radius * (mountain_radius - max(dx, dy)))

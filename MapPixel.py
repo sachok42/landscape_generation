@@ -5,18 +5,24 @@ from earth_levels import earth_levels
 
 class MapPixel:
 	def __init__(self, arg1): # attribute_dict or height
+		self.continent = 0
+		self.humidity = 0
+		self.plate = 0
+		self.mountain = False
 		if type(arg1) is dict:
 			# print(f"dict_initializing dict is {arg1}")
 			for key, value in arg1.items():
 				setattr(self, key, value)
 		elif type(arg1) is int or type(arg1) is float:
 			self.height = min(math.floor(abs(arg1)), 255)
-			self.humidity = 0
+			# self.humidity = 0
 		else:
 			print(arg1)
 			raise Exception
 
-		self.continent = 0
+	def change_height(self, value):
+		self.height += value
+		self.height = min(math.floor(abs(self.height)), 255)
 
 	def color(self):
 		color = [0, 0, 255]
@@ -45,3 +51,10 @@ class MapPixel:
 	def sinking(self):
 		if self.is_land():
 			self.height -= 140
+
+	def mountainification(self, value):
+		if not self.mountain:
+			self.change_height(value)
+			self.mountain = True
+			return True
+		return False
