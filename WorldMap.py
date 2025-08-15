@@ -124,18 +124,12 @@ class WorldMap:
 					self.continents_list.append([])
 					print(f"continent number {len(self.continents_list)} done")
 
-	def operation_continental_noise(self):
-		try:
-			for continent in self.continents_list:
-				if len(continent) <= min_island:
-					for x, y in continent:
-						self.map[y][x].sinking()
-		except Exception:
-			self.find_continents()
-			for continent in self.continents_list:
-				if len(continent) <= min_island:
-					for x, y in continent:
-						self.map[y][x].sinking()
+		self.continents = []
+		for tiles in self.continents_list:
+			self.continents.append(continent(self.map, tiles))
+
+	# def find_seas
+
 	def dfs(self, x, y, continent, stack):
 		limit = 0
 		while stack and limit < 300000:
@@ -153,3 +147,16 @@ class WorldMap:
 				stack.append((x + 1, y))
 				self.map[y][x].set_continent(continent)
 				self.continents_list[-1].append((x, y))
+
+	def operation_continental_noise(self):
+		try:
+			for continent in self.continents_list:
+				if len(continent) <= min_island:
+					for x, y in continent:
+						self.map[y][x].sinking()
+		except Exception:
+			self.find_continents()
+			for continent in self.continents_list:
+				if len(continent) <= min_island:
+					for x, y in continent:
+						self.map[y][x].sinking()

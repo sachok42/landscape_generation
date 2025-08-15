@@ -1,5 +1,7 @@
 import math
 import json
+from earth_levels import earth_levels
+
 
 class MapPixel:
 	def __init__(self, arg1): # attribute_dict or height
@@ -17,23 +19,22 @@ class MapPixel:
 		self.continent = 0
 
 	def color(self):
-		if self.height > 230:
-			return [96, 96, 96]
-		elif self.height > 220:
-			return [192, 192, 192]
-		elif self.height > 200:
-			return [0, 102, 0]
-		elif self.height > 150:
-			return [51, 251, 51]
-		elif self.height > 140:
-			return [255, 255, 0]
-		return [0, 0, 255]
+		color = [0, 0, 255]
+		for level, new_color in earth_levels:
+			if self.height >= level:
+				color = new_color
+				break
+
+		return color
 
 	def set_continent(self, continent):
 		self.continent = continent
 
 	def is_land(self):
-		return self.height > 140
+		return self.height > earth_levels[-1][0]
+
+	def is_sea(self):
+		return not self.is_land()
 
 	def to_dict(self):
 		return self.__dict__
