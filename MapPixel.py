@@ -14,7 +14,7 @@ class MapPixel:
 			for key, value in arg1.items():
 				setattr(self, key, value)
 		elif type(arg1) is int or type(arg1) is float:
-			self.height = min(math.floor(abs(arg1)), 255)
+			self.height = arg1
 			# self.humidity = 0
 		else:
 			print(arg1)
@@ -25,7 +25,7 @@ class MapPixel:
 		self.height = min(math.floor(abs(self.height)), 255)
 
 	def color(self):
-		height = min(self.height + self.mountain_mod, 255)
+		height = abs(min(self.height + self.mountain_mod, 255))
 		color = [0, 0, 255]
 		for level, new_color in earth_levels:
 			if height >= level:

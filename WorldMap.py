@@ -11,11 +11,14 @@ from math import sqrt
 from Continent import Continent
 
 class WorldMap:
-	def __init__(self, arg1, width=None): # arg1 is either height or filename
+	def __init__(self, arg1, width=None, zeroing=False): # arg1 is either height or filename
 		if type(arg1) == int and type(width) == int:
 			self.height = arg1
 			self.width = width
-			self.map = [[None for _ in range(width)] for __ in range(self.height)]
+			if zeroing:
+				self.map = [[MapPixel(0) for _ in range(width)] for __ in range(self.height)]
+			else:
+				self.map = [[None for _ in range(width)] for __ in range(self.height)]
 		elif type(arg1) == str and width is None:
 			self.read_file(arg1)
 
@@ -45,8 +48,8 @@ class WorldMap:
 	def anti_alising(self, radius=area_radius):
 		for y in range(len(self)):
 			for x in range(len(self.map[0])):
-				if abs(self.mean_height(x, y) - self.map[y][x].height) > difference_limit:
-					self.predict_pixel(x, y)
+				if abs(self.mean_height(x, y, radius) - self.map[y][x].height) > difference_limit:
+					self.predict_pixel(x, y, radius)
 
 	def anti_alising_geo(self, radius=area_radius):
 		for y in range(len(self)):
